@@ -1,10 +1,9 @@
 {
-  "name":"shaanjo-health-sys-monorepo",
+  "name":"health-sys-monorepo",
   "private": true,
   "scripts":{},
   "workspaces":[
     "api",
-    "docs",
     "web-app"
   ]
 }
