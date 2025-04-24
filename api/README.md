@@ -1,21 +1,25 @@
-```txt
-npm install
-npm run dev
-```
+# API
+it needs to be standalone service
+consumed through a `Service Binding` i.e (cloudflare service bindings) or  REST endpoints
 
-```txt
-npm run deploy
-```
+## Must haves
+create/delete new client
+create/delete new health program
+enroll clinet to a program
+search a client - by name or id (any unique property)
+view client profile
 
-[For generating/synchronizing types based on your Worker configuration run](https://developers.cloudflare.com/workers/wrangler/commands/#types):
+## "would be nice" haves
+list clients
+list programs
+list programs per clients
+list clients per program
+create/ delete a doc
+list doctors
+view doctor profile
 
-```txt
-npm run cf-typegen
-```
-
-Pass the `CloudflareBindings` as generics when instantiation `Hono`:
-
-```ts
-// src/index.ts
-const app = new Hono<{ Bindings: CloudflareBindings }>()
-```
+SECURITY:
+  - authenticate users
+  - expire session after inactivity
+  - encryp user data at rest(cloudflare does this)
+  - users can only be created by existing user
