@@ -3,16 +3,22 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate:local": "bun run ./cf-migrate.ts --local",
+    "db:mingrate:remote": "bun run ./cf-migrate.ts --remote"
   },
   "dependencies": {
     "@hono/valibot-validator": "^0.5.2",
     "@valibot/to-json-schema": "^1.0.0",
+    "drizzle-orm": "^0.43.0",
     "hono": "^4.7.7",
     "hono-openapi": "^0.4.6",
     "valibot": "^1.0.0"
   },
   "devDependencies": {
+    "@types/bun": "^1.2.10",
+    "drizzle-kit": "^0.31.0",
     "wrangler": "^4.4.0"
   }
 }

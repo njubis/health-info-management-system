@@ -21,13 +21,14 @@
   //     "bucket_name": "my-bucket"
   //   }
   // ],
-  // "d1_databases": [
-  //   {
-  //     "binding": "MY_DB",
-  //     "database_name": "my-database",
-  //     "database_id": ""
-  //   }
-  // ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "health-sys-db",
+      "database_id": "a32f4911-6eab-4a27-885d-b4c95877136e",
+      "migrations_dir": "drizzle/migrations"
+    }
+  ]
   // "ai": {
   //   "binding": "AI"
   // },
