@@ -10,7 +10,7 @@ import { updateClientAPIDescriber, updateClientHandler, updateClientValidator } 
 * so that we have the separation of clinet and medics routes working.
 * because a hono instance `.route()` accepts the return value of the  `.get()`, `.post()` etc.
 * */
-const clientsAPI = new Hono()
+const clientsAPI = new Hono<{Bindings: Cloudflare.Env}>()
   .post("/new", newClientAPIDescriber, newClientValidator, newClientHandler)
   .get("/:id", getClientAPIDescriber, getClientValidator, getClientHandler)
   .delete("/:id", delClientAPIDescriber, delClientValidator, delClientHandler)

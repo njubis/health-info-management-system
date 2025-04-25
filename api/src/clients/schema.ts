@@ -11,7 +11,7 @@ export const newClientSchema = v.object({
   /** contact information */
   contact: v.string(),
   /** Array of ids of programs as a string separated by commas */
-  enrollmentPrograms:  v.string(),
+  enrolledPrograms:  v.string(),
   /** medical history od the client */
   medicalHist: v.string()
 })
@@ -36,3 +36,4 @@ export const deleteClientParamSchema = v.object({
 
 export type NewClient = v.InferInput<typeof newClientSchema>
 export type UpdateClient = v.InferInput<typeof updateClientSchema>
+export type ClientProfile = v.InferInput<typeof clientProfileSchema>

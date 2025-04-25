@@ -26,3 +26,8 @@ export const medicsTable = sqliteTable("medics", {
   registeredAt: text("registered_at").notNull()
 })
 
+export const schema = {
+  clientsTable,
+  enrolledProgramsTable,
+  medicsTable
+}

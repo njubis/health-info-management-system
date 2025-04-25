@@ -3,7 +3,11 @@ import {
   resolver,
   validator as vValidator,
 } from 'hono-openapi/valibot'
-import { clientProfileSchema, updateClientSchema } from "./schema";
+import { UpdateClient, clientProfileSchema, updateClientSchema } from "./schema";
+import { MiddlewareHandler } from 'hono';
+import { drizzle } from 'drizzle-orm/d1';
+import { schema } from '../db/schema';
+import { eq } from 'drizzle-orm';
 
 export const updateClientAPIDescriber = describeRoute({
       description: 'Update one or more client details',
@@ -19,15 +23,18 @@ export const updateClientAPIDescriber = describeRoute({
 
   export const updateClientValidator = vValidator('form', updateClientSchema)
 
-  export const updateClientHandler = async(c)=>{
-      const formData  = c.req.valid("form");
-      const id  = c.req.param("id");
+  export const updateClientHandler: MiddlewareHandler<{ Bindings: Cloudflare.Env }, string, any> = async(c)=>{
+      const formData  = c.req.valid("form") as UpdateClient;
+      const id  = c.req.param("id") as string;
+      const db = drizzle(c.env.DB, {schema})
+      const updatedRes = await db.
+        update(schema.clientsTable)
+        .set(formData)
+        .where(eq(schema.clientsTable.id, id))
+        .returning()
+
       return c.json({
         success: true,
-        message: "updated profile",
-        data: {
-        id,
-        ...formData
-        }
+        data: updatedRes
       })
-    } 
+    }
