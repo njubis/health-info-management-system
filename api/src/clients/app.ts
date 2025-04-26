@@ -3,6 +3,7 @@ import { newClientAPIDescriber, newClientHandler, newClientValidator } from "./n
 import { getClientAPIDescriber, getClientHandler, getClientValidator } from "./getClient";
 import { delClientAPIDescriber, delClientValidator, delClientHandler} from "./deleteClient"
 import { updateClientAPIDescriber, updateClientHandler, updateClientValidator } from "./updateClient";
+import { findClientAPIDescriber, findClientValidator, findClientHandler } from "./findClient";
 
 /**
 * Clients App
@@ -15,5 +16,6 @@ const clientsAPI = new Hono<{Bindings: Cloudflare.Env}>()
   .get("/:id", getClientAPIDescriber, getClientValidator, getClientHandler)
   .delete("/:id", delClientAPIDescriber, delClientValidator, delClientHandler)
   .post("/:id/update", updateClientAPIDescriber, updateClientValidator, updateClientHandler)
-    
+  .post("/search", findClientAPIDescriber, findClientValidator, findClientHandler)
+
 export { clientsAPI }

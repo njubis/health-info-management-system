@@ -4,11 +4,13 @@ import { NewClient, UpdateClient, clientsAPI }  from './clients';
 import { generateRandomString } from './utils/generateRandomString';
 import { drizzle } from 'drizzle-orm/d1';
 import { clientsTable, schema } from './db/schema';
-import { eq } from "drizzle-orm"
+import { eq, like } from "drizzle-orm"
+import { programsAPI } from './programs';
 
 const app = new Hono<{Bindings: Cloudflare.Env}>()
 
 app.route("/clients", clientsAPI)
+app.route("/programs", programsAPI)
 
 /**
 * # REST and RPC(WorkerEntrypoint)
@@ -21,6 +23,7 @@ export default class extends WorkerEntrypoint<Cloudflare.Env> {
     return app.fetch(request, this.env, this.ctx);
   }
 
+  /** The RPC methods. These can only be called via a binding in another service that is also on cloudflare workers */
   async getClient(id: string) {
     // read from db a client with this id
     const db = drizzle(this.env.DB, { schema })
@@ -85,12 +88,16 @@ export default class extends WorkerEntrypoint<Cloudflare.Env> {
 
   async findClient(query: string){
     // find a client using the provided query
+    const db = drizzle(this.env.DB)
+        const result = db.select()
+          .from(schema.clientsTable)
+          .where(like(schema.clientsTable.name, `%${query}%`));
     return {
-       query,
+       success: true,
        // list of found clients
-       data: [
-
-       ],
+       data: result,
     }
   }
+
+
 }

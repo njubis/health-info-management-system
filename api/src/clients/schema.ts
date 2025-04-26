@@ -34,6 +34,10 @@ export const deleteClientParamSchema = v.object({
   id: v.string()
 })
 
+export const queryParamSchema = v.object({
+  q: v.string()
+})
+
 export type NewClient = v.InferInput<typeof newClientSchema>
 export type UpdateClient = v.InferInput<typeof updateClientSchema>
 export type ClientProfile = v.InferInput<typeof clientProfileSchema>
