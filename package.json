@@ -2,9 +2,22 @@
   "name":"health-sys-monorepo",
   "private": true,
   "scripts":{},
+  "author": {
+      "name": "Njubi Simon",
+      "email": "njubi.dev@gmail.com",
+      "url": "https://njubi.dev"
+    },
+    "description": "A minimal health information system",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/njubis/health-info-management-system"
+    },
+    "bugs": {
+      "url": "https://github.com/njubis/health-info-management-system/issues"
+    },
+  "homepage": "https://github.com/njubis/health-info-management-system/#readme",
   "workspaces":[
     "api",
-    "web-app",
-    "app"
+    "web-app"
   ]
 }
