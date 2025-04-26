@@ -6,12 +6,27 @@ import { drizzle } from 'drizzle-orm/d1';
 import { clientsTable, schema } from './db/schema';
 import { eq, like } from "drizzle-orm"
 import { programsAPI } from './programs';
+import { openAPISpecs } from 'hono-openapi'
 
 const app = new Hono<{Bindings: Cloudflare.Env}>()
 
 app.route("/clients", clientsAPI)
 app.route("/programs", programsAPI)
-
+app.get(
+  '/openapi',
+  openAPISpecs(app, {
+    documentation: {
+      info: {
+        title: 'Health Information System API Specs',
+        version: '0.0.1',
+        description: 'Health Information System API',
+      },
+      servers: [
+        { url: 'http://localhost:8787', description: 'Local Server' },
+      ],
+    },
+  })
+)
 /**
 * # REST and RPC(WorkerEntrypoint)
 * this class provided by Cloudflare will allow us to have REST api and RPC functionality within the same script
@@ -60,7 +75,7 @@ export default class extends WorkerEntrypoint<Cloudflare.Env> {
       nextAppointment:  new Date(new Date().getTime()+(7*24*60*60*1000)).toDateString()
     }
     const db = drizzle(this.env.DB)
-    const result = db
+    const result = await db
       .insert(clientsTable)
       .values(newClientData)
       .returning()
@@ -74,7 +89,7 @@ export default class extends WorkerEntrypoint<Cloudflare.Env> {
   async updateClient(id:string, data: UpdateClient){
     // write changed properties
     const db = drizzle(this.env.DB)
-    const result = db
+    const result = await db
       .update(schema.clientsTable)
       .set(data)
       .where(eq(schema.clientsTable.id, id))
@@ -89,13 +104,33 @@ export default class extends WorkerEntrypoint<Cloudflare.Env> {
   async findClient(query: string){
     // find a client using the provided query
     const db = drizzle(this.env.DB)
-        const result = db.select()
+        const result = await db.select()
           .from(schema.clientsTable)
           .where(like(schema.clientsTable.name, `%${query}%`));
     return {
        success: true,
        // list of found clients
        data: result,
+    }
+  }
+
+  async getAllClients(){
+    const db = drizzle(this.env.DB);
+    const result = await db.select().from(schema.clientsTable)
+    return {
+      success: true,
+      // list of found clients
+      data: result,
+    }
+  }
+
+  async getAllPrograms(){
+    const db = drizzle(this.env.DB);
+    const result = await db.select().from(schema.enrolledProgramsTable)
+    return {
+      success: true,
+      // list of found clients
+      data: result,
     }
   }
 

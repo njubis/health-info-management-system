@@ -4,6 +4,7 @@
   "scripts":{},
   "workspaces":[
     "api",
-    "web-app"
+    "web-app",
+    "app"
   ]
 }
