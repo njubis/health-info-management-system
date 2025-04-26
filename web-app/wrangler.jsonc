@@ -4,8 +4,8 @@
  */
 {
   "$schema": "../node_modules/wrangler/config-schema.json",
-  "name": "health-info-sys",
-  "main": "./dist/_worker.js",
+  "name": "healthsystem",
+  "main": "./server/_worker.js",
   "compatibility_date": "2025-04-24",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {

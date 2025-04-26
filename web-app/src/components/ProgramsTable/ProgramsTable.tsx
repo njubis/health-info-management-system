@@ -28,9 +28,9 @@ export const ProgramsTable = component$<ProgramsTableProps>(({programsData}) => 
               {programsData.map(
                 ({ name, description })=> {
                   return (
-                    <tr class="hover:bg-grey-lighter">
-                      <td class="border-grey-light border-b px-4 py-2 font-semibold text-blue-800">{name}</td>
-                      <td class="border-grey-light border-b px-4 py-2">{description}</td>
+                    <tr  key={name} class="hover:bg-grey-lighter">
+                      <td class="text-left border-grey-light border-b px-4 py-2 font-semibold text-blue-800">{name}</td>
+                      <td class="text-left border-grey-light border-b px-4 py-2">{description}</td>
                     </tr>
                   );
                 }

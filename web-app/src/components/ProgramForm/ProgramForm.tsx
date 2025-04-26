@@ -1,6 +1,7 @@
-import { component$ } from "@builder.io/qwik";
+import { PropsOf, component$ } from "@builder.io/qwik";
+import { Form } from "@builder.io/qwik-city";
 
-export interface ProgramFormProps {}
+export type ProgramFormProps = {} & PropsOf<typeof Form>
 
 export const ProgramForm = component$<ProgramFormProps>((props) => {
   return (
@@ -42,9 +43,8 @@ export const ProgramForm = component$<ProgramFormProps>((props) => {
         </div>
       </div>
 
-      <form
-        action="https://fabform.io/f/xxxxx"
-        method="post"
+      <Form
+        {...props}
         class="ml-auo space-y-4"
       >
         <input
@@ -60,12 +60,12 @@ export const ProgramForm = component$<ProgramFormProps>((props) => {
           class="w-full rounded-md border px-4 pt-2.5 text-sm outline-[#007bff]"
         ></textarea>
         <button
-          type="button"
+          type="submit"
           class="w-full rounded-md bg-[#007bff] px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-600"
         >
           Create
         </button>
-      </form>
+      </Form>
     </div>
   );
 });

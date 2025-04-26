@@ -1,6 +1,7 @@
-import { component$, useStore } from "@builder.io/qwik";
+import { PropsOf, component$, useStore } from "@builder.io/qwik";
+import { Form } from "@builder.io/qwik-city";
 
-export interface ClientFormProps {}
+export type ClientFormProps = {} & PropsOf<typeof Form>
 
 export const ClientForm = component$<ClientFormProps>((props) => {
   const store = useStore({
@@ -11,7 +12,7 @@ export const ClientForm = component$<ClientFormProps>((props) => {
     enrolledPrograms: "",
   });
   return (
-    <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
+    <Form {...props} class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
       <div class="mx-auto w-full max-w-4xl bg-white">
         <div class="grid h-full grid-cols-6">
           <div class="col-span-2 bg-blue-900 p-10">
@@ -50,6 +51,7 @@ export const ClientForm = component$<ClientFormProps>((props) => {
             <div class="mb-6 grid grid-cols-2 gap-6">
               <div class="flex flex-col">
                 <input
+                name="name"
                   onInput$={(_, inputEl) => {
                     store.name = inputEl.value;
                   }}
@@ -60,6 +62,7 @@ export const ClientForm = component$<ClientFormProps>((props) => {
               </div>
               <div class="flex flex-col">
                 <input
+                name="dob"
                   type="date"
                   onInput$={(_, inputEl) => {
                     store.dob = inputEl.value;
@@ -83,6 +86,7 @@ export const ClientForm = component$<ClientFormProps>((props) => {
               </div>
               <div class="flex flex-col">
                 <input
+                name="enrolledPrograms"
                   onInput$={(_, inputEl) => {
                     store.enrolledPrograms = inputEl.value;
                   }}
@@ -94,14 +98,13 @@ export const ClientForm = component$<ClientFormProps>((props) => {
             </div>
             <div class="mb-6">
               <textarea
+                name="medicalHistory"
                 onInput$={(_, inputEl) => {
                   store.medicalHistory = inputEl.value;
                 }}
                 class="w-full rounded-2xl px-6 py-4 placeholder:text-xs"
                 placeholder="Medical History"
-                name=""
-                id=""
-                rows="8"
+                rows={8}
               ></textarea>
             </div>
             <div class="flex justify-center">
@@ -112,6 +115,6 @@ export const ClientForm = component$<ClientFormProps>((props) => {
           </div>
         </div>
       </div>
-    </div>
+    </Form>
   );
 });

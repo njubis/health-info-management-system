@@ -1,4 +1,5 @@
-import { component$, useOnDocument, $, Slot } from "@builder.io/qwik";
+import { component$, Slot } from "@builder.io/qwik";
+import {TbHome, TbUsers, TbExternalLink} from "@qwikest/icons/tablericons"
 
 export default component$(() => {
   return (
@@ -15,7 +16,7 @@ export default component$(() => {
             </div>
             <a
               id="toggle-button"
-              class="hidden rounded-full bg-gray-200 transition-all duration-500 ease-in-out lg:block"
+              class="hidden rounded-full bg-gray-200 transition-all duration-500 ease-in-out md:block"
               href="#"
             >
               <i class="fa-solid fa-arrow-left p-3"></i>
@@ -47,8 +48,8 @@ export default component$(() => {
             <ul class="mt-2 flex flex-col gap-1">
               <li class="text-gray-500 hover:bg-gray-100 hover:text-gray-900">
                 <a class="flex w-full items-center py-3" href="/dashboard">
-                  <i class="fa-solid fa-house px-5 text-center"></i>
-                  <span class="pl-1 whitespace-nowrap">Dashboard</span>
+                  <i class="fa-solid fa-house px-5 text-center"><TbHome /></i>
+                  <span class="pl-1 whitespace-nowrap hidden md:block">Dashboard</span>
                 </a>
               </li>
 
@@ -57,8 +58,8 @@ export default component$(() => {
                   class="flex w-full items-center py-3"
                   href="/dashboard/programs"
                 >
-                  <i class="fa-solid fa-chart-line px-5 text-center"></i>
-                  <span class="pl-1 whitespace-nowrap">Programs</span>
+                  <i class="fa-solid fa-house px-5 text-center"><TbHome /></i>
+                  <span class="pl-1 whitespace-nowrap hidden md:block">Programs</span>
                 </a>
               </li>
 
@@ -67,8 +68,8 @@ export default component$(() => {
                   class="flex w-full items-center py-3"
                   href="/dashboard/clients"
                 >
-                  <i class="fa-solid fa-users px-5 text-center"></i>
-                  <span class="pl-1 whitespace-nowrap">Clients</span>
+                  <i class="fa-solid fa-house px-5 text-center"><TbUsers /></i>
+                  <span class="pl-1 whitespace-nowrap hidden md:block">Clients</span>
                 </a>
               </li>
             </ul>
@@ -76,8 +77,8 @@ export default component$(() => {
             <ul class="mt-2 flex flex-col gap-1">
               <li class="text-gray-500 hover:bg-gray-100 hover:text-gray-900">
                 <a class="flex w-full items-center py-3" href="#">
-                  <i class="fa-solid fa-right-from-bracket px-5 text-center"></i>
-                  <span class="pl-1">Logout</span>
+                  <i class="fa-solid fa-house px-5 text-center"><TbExternalLink /></i>
+                  <span class="pl-1 hidden md:block">Logout</span>
                 </a>
               </li>
             </ul>

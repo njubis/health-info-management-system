@@ -1,29 +1,10 @@
-import { component$, useOnDocument, useSignal, $ } from "@builder.io/qwik";
+import { component$, useSignal } from "@builder.io/qwik";
 import {
   Link,
-  type RequestEventLoader,
-  routeLoader$,
   type DocumentHead,
 } from "@builder.io/qwik-city";
-import type { PlatformCloudflarePages } from "@builder.io/qwik-city/middleware/cloudflare-pages";
-
-export const useClientProfile = routeLoader$(
-  async (event: RequestEventLoader<PlatformCloudflarePages>) => {
-    const env = event.platform.env as Env;
-    const res = await env.API.getClient("5v63LmSAJL1TVvee");
-    console.log(res);
-    return "hello from api";
-  },
-);
 
 export default component$(() => {
-  const clientProfile = useClientProfile();
-  useOnDocument(
-    "DOMContentLoaded",
-    $(() => {
-      console.log(clientProfile);
-    }),
-  );
   const enableLoginSig = useSignal(false);
   return (
     <div class="flex min-h-screen items-center justify-center transition-all">

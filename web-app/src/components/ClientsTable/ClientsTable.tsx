@@ -4,6 +4,8 @@ export type Client = {
   name: string;
   dob: string;
   contact: string;
+  gender: string;
+  registrationDate: string;
   medicalHistory: string;
   enrolledPrograms: string;
 };
@@ -24,34 +26,34 @@ export const ClientsTable = component$<ClientsTableProps>(({ clientsData }) => {
       <div class="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
       <table class="w-full table-auto text-sm">
         <thead>
-          <tr class="text-sm leading-normal">
-            <th class="bg-grey-lightest text-grey-light border-grey-light border-b px-4 py-2 text-sm font-bold uppercase">
+          <tr class="text-left text-sm leading-normal">
+            <th class="text-left bg-grey-lightest text-grey-light border-grey-light border-b px-4 py-2 text-sm font-bold uppercase">
               Name
             </th>
-            <th class="bg-grey-lightest text-grey-light border-grey-light border-b px-4 py-2 text-sm font-bold uppercase">
+            <th class="text-left hidden md:table-cell bg-grey-lightest text-grey-light border-grey-light border-b px-4 py-2 text-sm font-bold uppercase">
               Contact
             </th>
-            <th class="bg-grey-lightest text-grey-light border-grey-light border-b px-4 py-2 text-sm font-bold uppercase">
+            <th class="text-left bg-grey-lightest text-grey-light border-grey-light border-b px-4 py-2 text-sm font-bold uppercase">
               Medical History
             </th>
-            <th class="bg-grey-lightest text-grey-light border-grey-light border-b px-4 py-2 text-sm font-bold uppercase">
+            <th class="text-left hidden md:table-cell bg-grey-lightest text-grey-light border-grey-light border-b px-4 py-2 text-sm font-bold uppercase">
                           Programs
                         </th>
-          <th class="bg-grey-lightest text-grey-light border-grey-light border-b px-4 py-2 text-sm font-bold uppercase">
+          <th class="text-left bg-grey-lightest text-grey-light border-grey-light border-b px-4 py-2 text-sm font-bold uppercase">
                                     Profile
                                   </th>
                     </tr>
         </thead>
         <tbody>
           {clientsData.map(
-            ({ name, dob, contact, medicalHistory, enrolledPrograms }) => {
+            ({ name,  contact, medicalHistory }) => {
               return (
-                <tr class="hover:bg-grey-lighter">
+                <tr key={name} class="hover:bg-grey-lighter">
                   <td class="border-grey-light border-b px-4 py-2">{name}</td>
-                  <td class="border-grey-light border-b px-4 py-2">{contact}</td>
+                  <td class="hidden md:table-cell border-grey-light border-b px-4 py-2">{contact}</td>
                   <td class="border-grey-light border-b px-4 py-2">{medicalHistory}</td>
                   <td class="border-grey-light border-b px-4 py-2">
-                    <span class="rounded-md border-green-50 px-3 py-1 text-xs text-green-700 ring-1 ring-green-200">
+                    <span class="hidden md:table-cell rounded-md border-green-50 px-3 py-1 text-xs text-green-700 ring-1 ring-green-200">
                        View Programs
                     </span>
                   </td>
