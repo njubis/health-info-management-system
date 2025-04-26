@@ -30,7 +30,10 @@ export default component$(() => {
         <RouterHead />
         {!isDev && <ServiceWorkerRegister />}
       </head>
-      <body lang="en" class="min-h-screen min-w-screen bg-gradient-to-br from-blue-200 via-indigo-200 to-red-100">
+      <body
+        lang="en"
+        class="min-h-screen min-w-screen bg-gradient-to-br from-blue-200 via-indigo-200 to-red-100"
+      >
         <RouterOutlet />
       </body>
     </QwikCityProvider>
