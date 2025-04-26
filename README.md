@@ -17,6 +17,25 @@ A minimal health information system.
   + Client creation and deletion
   + Programs view and crud operations
 
+## Screenshots
+Login screen
+
+![Screenshot_20250426_195123](https://github.com/user-attachments/assets/486ca5ba-f310-4b95-8170-8cdc7a0b03ef)
+
+Dashboard
+
+![Screenshot_20250426_202508](https://github.com/user-attachments/assets/dac2e62f-84df-45ba-b084-f19dc89a452f)
+
+Client Form
+
+![Screenshot_20250426_202551](https://github.com/user-attachments/assets/ceb9ab1c-f8f3-4254-8e9d-ad83cdf5261b)
+
+Health Program Form
+
+![Screenshot_20250426_202617](https://github.com/user-attachments/assets/f4c42d4c-3c90-49c3-aac3-5b7e0f70c00c)
+
+
+
 ## Development
 ### Technologies used
     - [**Qwik**](https://qwik.dev) - Fast Resumable frontend framework
